@@ -36,6 +36,7 @@ def main(page:Page):
                 flet.dropdown.Option("Viaticos"),
                 flet.dropdown.Option("Doméstico"),
                 flet.dropdown.Option("Ahorro"),
+                flet.dropdown.Option("Aportes"),
                 flet.dropdown.Option("Traslado"),
                 flet.dropdown.Option("Salario"),
                 flet.dropdown.Option("Ajuste"),
