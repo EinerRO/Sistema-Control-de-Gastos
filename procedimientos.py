@@ -36,12 +36,7 @@ def extraer_monto_ahorro():
 def extraer_saldo_mes_anterior():
     documentos = leer_documentos(conexion2)
     for documento in documentos:
-        fecha = datetime.strptime(documento["fecha"], '%d/%m/%Y').date()
-        dia = fecha.strftime('%d')
-        mes = fecha.strftime('%m')
-        anio = fecha.strftime('%Y')
-        lista_dias.append(f'{dia}/{mes}/{anio}')
-
+        
         if  f'31/{int(mes_actual) - 1}/{anio_actual}' in lista_dias:
             for documento in documentos:
                 fecha = datetime.strptime(documento["fecha"], '%d/%m/%Y').date()
