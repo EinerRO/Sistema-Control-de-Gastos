@@ -12,8 +12,6 @@ mes_actual = fecha_actual.strftime('%m')
 anio_actual = fecha_actual.strftime('%Y')
 format_fecha = f'{dia_actual}/{mes_actual}/{anio_actual}'
 
-lista_dias = []
- 
 def clasificar_monto_transaccion(transaccion):
     monto = 0
     documentos = leer_documentos(conexion2)
@@ -32,9 +30,16 @@ def extraer_monto_ahorro():
             monto_ahorro += int(documento["valor"])
     return monto_ahorro
 
+def alamacenarfechas_transatotales():
+    lista_dias = []
+    documentos = leer_documentos(conexion2)
+    for documento in documentos:
+        lista_dias.append(documento["fecha"])
+    return lista_dias
 
 def extraer_saldo_mes_anterior():
     documentos = leer_documentos(conexion2)
+    lista_dias = alamacenarfechas_transatotales()
     for documento in documentos:
         
         if  f'31/{int(mes_actual) - 1}/{anio_actual}' in lista_dias:
