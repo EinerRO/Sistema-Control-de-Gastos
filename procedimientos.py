@@ -88,4 +88,11 @@ def definir_nombre_mes(fecha_actual):
     elif fecha_actual.strftime('%B') == 'December':
         nombre_mes = 'diciembre'
     return nombre_mes
+
+# Función para calcular total de rindediario y total cupo
+def calcular_totales(lista):
+    total = 0
+    for valor in lista:
+        total += int(valor)
+    return total
      

@@ -4,7 +4,7 @@ import datetime
 from pathlib import Path
 import os
 from conexionmongo import conectar_mongodb, leer_documentos, insertar_totales, insetar_transaccion
-from procedimientos import extraer_saldo_mes_anterior, definir_nombre_mes
+from procedimientos import extraer_saldo_mes_anterior, definir_nombre_mes, calcular_totales
 
 #Función para clasificar las transacciones según su tipo
 def clasificar_transaccion_tipo(tipo_transaccion, lista, contenido):
@@ -36,14 +36,6 @@ def clasificar_transaccion_cuenta(cuenta_transaccion, lista_rindediario, lista_c
     elif '3778' in cuenta_transaccion:
         lista_cupo.append(valor)
     
-
-# Función para calcular total de rindediario y total cupo
-def calcular_totales(lista):
-    total = 0
-    for valor in lista:
-        total += int(valor)
-    return total
-
 #Función para extraer transacciones de la base de datos Mongodb
 def extraer_otras_transacciones(consignaciones, retiros, pagos, transferencias, mes_actual, conexion1):
     transacciones = leer_documentos(conexion1)
