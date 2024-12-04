@@ -126,19 +126,19 @@ with open(archivo_csv, 'w', newline='') as csvfile:
     csvwrite = csv.writer(csvfile)
     csvwrite.writerow(['Dirección', 'Cuerpo', 'Fecha'])
     for sms in raiz.findall('sms'):
-        # fecha_actual.strftime('%B')
-        if definir_nombre_mes(fecha_actual) in sms.get('readable_date') or fecha_actual.strftime('%B') in sms.get('readable_date'):
-            direccion = sms.get('address')
-            cuerpo = sms.get('body')
-            fecha = sms.get('readable_date')
-            csvwrite.writerow([direccion, cuerpo, fecha])
-            clasificar_transaccion_tipo('Pago productos', pago_productos_pse, cuerpo)
-            clasificar_transaccion_tipo('Retiro', retiros, cuerpo)
-            clasificar_transaccion_tipo('Retiro - Sin tarjeta', retiros_sin_tarjeta, cuerpo)
-            clasificar_transaccion_tipo('realizo una transferencia', transferencias, cuerpo)
-            clasificar_transaccion_tipo('realizo Compra', compras, cuerpo)
-            clasificar_transaccion_tipo('consignacion', consignaciones, cuerpo)
-
+        if fecha_actual.strftime('%Y') in sms.get('readable_date'):
+            if definir_nombre_mes(fecha_actual) in sms.get('readable_date') or fecha_actual.strftime('%B') in sms.get('readable_date'):
+                direccion = sms.get('address')
+                cuerpo = sms.get('body')
+                fecha = sms.get('readable_date')
+                csvwrite.writerow([direccion, cuerpo, fecha])
+                clasificar_transaccion_tipo('Pago productos', pago_productos_pse, cuerpo)
+                clasificar_transaccion_tipo('Retiro', retiros, cuerpo)
+                clasificar_transaccion_tipo('Retiro - Sin tarjeta', retiros_sin_tarjeta, cuerpo)
+                clasificar_transaccion_tipo('realizo una transferencia', transferencias, cuerpo)
+                clasificar_transaccion_tipo('realizo Compra', compras, cuerpo)
+                clasificar_transaccion_tipo('consignacion', consignaciones, cuerpo)
+            
 # PAGO DE PRODUCTOS PSE
 print("PAGOS PSE")
 extraer_valores(pago_productos_pse,rindediario_pago,cupo_credito_pago,valores_pagos_pse,7,8)
