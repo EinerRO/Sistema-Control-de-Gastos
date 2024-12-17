@@ -239,6 +239,4 @@ def clasificar_transacciones():
     print(saldo_rindediario)
     print(usos_cupo)
 
-
 clasificar_transacciones()
-

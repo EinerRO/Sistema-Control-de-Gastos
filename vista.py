@@ -361,4 +361,4 @@ def main(page:Page):
     )
     page.add(ventana_pricipal)
     page.update()
-flet.app(target=main)
+flet.app(target=main, view=flet.WEB_BROWSER)
